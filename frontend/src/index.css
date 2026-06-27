@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { 
+    box-sizing: border-box; 
+    border-radius: 0 !important; /* Reset tailwind defaults */
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: #0A0A0A !important;
+    color: #F5F5F5;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* ── Custom rounded styling limited to max 2px or 4px as per panel spec ── */
+.rounded-sm { border-radius: 2px !important; }
+.rounded-md { border-radius: 2px !important; }
+.rounded-lg { border-radius: 2px !important; }
+.rounded-xl { border-radius: 2px !important; }
+.rounded-2xl { border-radius: 2px !important; }
+.rounded-full { border-radius: 9999px !important; } /* Only for full buttons/pills */
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #1A1A1A; }
+
+/* ── Typography ── */
+.font-mono { font-family: 'JetBrains Mono', 'Courier New', monospace !important; }
+.font-sans { font-family: 'Inter', sans-serif !important; }
+
+/* ── Pill / Badge Label ── */
+.pill-label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #666;
+  padding: 5px 12px;
+  border: 1px solid #222;
+  border-radius: 2px !important;
+  background: transparent;
+}
+
+/* ── Bracket labels ── */
+.label-bracket {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+/* ── Section heading ── */
+.section-heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #F5F5F5;
+  line-height: 1.15;
+}
+
+/* ── Input reset ── */
+.vz-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #2A2A2A;
+  color: #F5F5F5;
+  padding: 10px 0;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  width: 100%;
+  transition: border-color 200ms ease;
+  border-radius: 0 !important;
+}
+.vz-input:focus { border-bottom-color: #666; }
+.vz-input::placeholder { color: #333; }
+
+/* ── Chatbot bottom-border input ── */
+.vz-input-line {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #2A2A2A;
+  color: #F5F5F5;
+  padding: 10px 0;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  width: 100%;
+  transition: border-color 200ms ease;
+  border-radius: 0 !important;
+}
+.vz-input-line:focus { border-bottom-color: #666; }
+.vz-input-line::placeholder { color: #333; }
+
+/* ── Button reset ── */
+.vz-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1px solid #1A1A1A;
+  background: transparent;
+  color: #F5F5F5;
+  cursor: pointer;
+  transition: background 200ms, color 200ms, border-color 200ms;
+  border-radius: 2px !important;
+}
+.vz-btn:hover { background: #F5F5F5; color: #0A0A0A; border-color: #F5F5F5; }
+.vz-btn-primary {
+  background: #F5F5F5;
+  color: #0A0A0A;
+  border-color: #F5F5F5;
+}
+.vz-btn-primary:hover { background: #FFFFFF; }
+.vz-btn-ghost { border-color: #1A1A1A; color: #444; }
+.vz-btn-ghost:hover { background: #F5F5F5; color: #0A0A0A; border-color: #F5F5F5; }
+
+/* ── Segmented Pill Controls ── */
+.seg-pills {
+  display: inline-flex;
+  border: 1px solid #1A1A1A;
+  border-radius: 2px !important;
+  overflow: hidden;
+  background: #0A0A0A;
+}
+.seg-pill {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  color: #444;
+  cursor: pointer;
+  transition: all 200ms ease;
+  border: none;
+  background: transparent;
+  white-space: nowrap;
+}
+.seg-pill:hover { color: #888; }
+.seg-pill.active {
+  background: #1A1A1A;
+  color: #F5F5F5;
+}
+
+/* ── Data Table ── */
+.vz-table { width: 100%; border-collapse: collapse; }
+.vz-table thead th {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #444;
+  padding: 10px 16px;
+  border-bottom: 1px solid #1A1A1A;
+  text-align: left;
+  white-space: nowrap;
+}
+.vz-table tbody td {
+  padding: 13px 16px;
+  border-bottom: 1px solid #1A1A1A;
+  font-size: 13px;
+  color: #888;
+  transition: background-color 200ms ease;
+}
+.vz-table tbody tr:hover td { background: #141414; cursor: pointer; }
+
+/* ── Bucket tags ── */
+.tag {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1px solid;
+  border-radius: 2px !important;
+}
+.tag-alist   { color: #E8533A; border-color: #E8533A; }
+.tag-tierb   { color: #888; border-color: #888; }
+.tag-waiting { color: #555; border-color: #555; }
+.tag-archive { color: #333; border-color: #333; }
+
+/* ── Type pill ── */
+.type-pill {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid #1A1A1A;
+  border-radius: 2px !important;
+  color: #555;
+}
+
+/* ── Status indicators ── */
+.status-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Card styles ── */
+.vz-card {
+  background: #0A0A0A;
+  border: 1px solid #1A1A1A;
+  transition: border-color 200ms ease;
+  border-radius: 2px !important;
+}
+.vz-card:hover { border-color: #333; }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+@keyframes ringPulse {
+  0% { box-shadow: 0 0 0 0 rgba(232, 83, 58, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(232, 83, 58, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 83, 58, 0); }
+}
+@keyframes dashes {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 8; }
+}
+
+.anim-fade-up   { animation: fadeUp 200ms ease-out forwards; }
+.anim-slide-in  { animation: slideLeft 200ms ease-out forwards; }
+.anim-pulse     { animation: pulse 2s infinite; }
+.anim-ring-pulse { animation: ringPulse 2s infinite; }
+
+/* ── Animated dashed border ── */
+.dashed-box {
+  border: 1px dashed #333;
+  padding: 20px 40px;
+  transition: border-color 200ms ease, color 200ms ease;
+  cursor: pointer;
+  border-radius: 2px !important;
+}
+.dashed-box:hover { border-color: #555; color: #FFFFFF; }
