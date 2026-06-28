@@ -21,61 +21,61 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#F5F5F5] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FFFFFF] text-[#4A5568] flex flex-col font-sans select-none justify-between">
 
-      {/* ── Navbar ── */}
-      <nav className="fixed top-0 left-0 right-0 h-[56px] bg-[#0A0A0A] border-b border-[#141414] flex justify-between items-center px-8 z-30">
+      {/* ── Navbar (fixed, 60px) ── */}
+      <nav className="fixed top-0 left-0 right-0 h-[60px] bg-[#FFFFFF] border-b border-[#E4E7EC] flex justify-between items-center px-8 z-30">
         <div className="flex items-center gap-2">
-          <span className="font-sans text-[13px] font-bold text-[#E8533A]">V</span>
-          <span className="font-sans text-[10px] tracking-[3px] font-bold text-[#F5F5F5] uppercase">VENTURIZER</span>
+          <span className="font-sans text-[16px] font-black text-[#D64235]">V</span>
+          <span className="font-sans text-[13px] tracking-[2px] font-bold text-[#1B2B4B] uppercase">VENTURIZER</span>
         </div>
         <div className="flex items-center gap-6">
           <button
             onClick={() => setView('dashboard')}
-            className="font-sans text-[10px] tracking-widest text-[#666] hover:text-[#F5F5F5] transition-colors uppercase"
+            className="font-sans text-[13px] font-medium text-[#4A5568] hover:text-[#0F1D35] transition-colors bg-transparent border-none cursor-pointer"
           >
             Dashboard
           </button>
           <button
             onClick={() => setShowChat(true)}
-            className="border border-[#222] px-4 py-1.5 font-sans text-[10px] tracking-widest hover:bg-[#F5F5F5] hover:text-[#0A0A0A] transition-all rounded-sm uppercase"
+            className="bg-[#0F1D35] text-[#FFFFFF] hover:bg-[#1B2B4B] px-5 py-2 font-sans text-[12px] font-semibold transition-colors rounded-sm uppercase tracking-wider cursor-pointer border-none"
           >
             Apply Now
           </button>
         </div>
       </nav>
 
-      {/* Offset fixed nav */}
-      <div className="h-[56px]" />
+      {/* Spacer to offset fixed nav */}
+      <div className="h-[60px]" />
 
-      {/* ── Hero — full viewport ── */}
-      <section className="flex-1 min-h-[calc(100vh-56px)] flex flex-col items-center justify-center text-center px-8 anim-fade-up">
-        <div className="mb-8">
-          <span className="font-sans text-[10px] uppercase tracking-[3px] text-[#555] border border-[#1A1A1A] py-1.5 px-3 rounded-sm">
+      {/* ── Hero Section (100vh) ── */}
+      <section className="flex-1 flex flex-col items-center justify-center text-center px-8 py-20 bg-[#FFFFFF] max-w-[700px] mx-auto anim-fade-up">
+        <div>
+          <span className="pill-label">
             VENTURE CAPABILITY ECOSYSTEM
           </span>
         </div>
 
-        <h1 className="font-sans font-bold text-[52px] leading-[1.1] tracking-[-1.5px] max-w-[640px] mb-6 text-[#F5F5F5]">
+        <h1 className="font-sans font-bold text-[52px] leading-[1.1] tracking-[-1.5px] text-[#0F1D35] mt-6 mb-6">
           Bridging Founders<br />
-          <span className="text-[#E8533A]">and Capital.</span>
+          <span className="text-[#D64235]">and Capital.</span>
         </h1>
 
-        <p className="text-[#555] text-[14px] leading-[1.8] max-w-[420px] mb-10">
-          We support founders in their 0–100 Crore journey.<br />
+        <p className="text-[#4A5568] text-[15px] leading-[1.8] max-w-[500px] mb-9">
+          We support founders in their 0–100 Crore journey.
           Apply below or speak with our qualification assistant.
         </p>
 
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           <button
             onClick={() => setShowChat(true)}
-            className="px-6 py-3 bg-[#F5F5F5] text-[#0A0A0A] font-sans text-[11px] tracking-widest hover:bg-white transition-colors rounded-sm uppercase font-bold"
+            className="px-6 py-3 bg-[#0F1D35] text-[#FFFFFF] font-sans text-[12px] font-semibold tracking-wider hover:bg-[#1B2B4B] transition-colors rounded-sm uppercase cursor-pointer border-none"
           >
             Apply Now →
           </button>
           <button
             onClick={() => setView('dashboard')}
-            className="px-6 py-3 border border-[#1A1A1A] text-[#555] font-sans text-[11px] tracking-widest hover:text-[#F5F5F5] hover:border-[#333] transition-all rounded-sm uppercase"
+            className="px-6 py-3 border border-[#CBD5E1] text-[#4A5568] font-sans text-[12px] font-semibold tracking-wider hover:border-[#0F1D35] hover:text-[#0F1D35] transition-all rounded-sm uppercase cursor-pointer bg-white"
           >
             Dashboard
           </button>
@@ -83,29 +83,26 @@ export default function App() {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-[#1A1A1A] px-8 py-10">
+      <footer className="bg-[#0F1D35] text-[#FFFFFF] px-8 py-10 w-full shrink-0">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <span className="font-sans text-[10px] font-bold text-[#E8533A]">V</span>
-            <span className="font-sans text-[10px] tracking-[2px] font-bold text-[#333] uppercase">Venturizer</span>
+            <span className="font-sans text-[16px] font-black text-[#D64235]">V</span>
+            <span className="font-sans text-[13px] tracking-[2px] font-bold text-[#FFFFFF] uppercase">VENTURIZER</span>
           </div>
-          <p className="font-sans text-[9px] text-[#333] tracking-widest uppercase">
+          <p className="font-sans text-[11px] text-[#94A3B8] text-center">
             © 2026 Venturizer. All rights reserved.
           </p>
-          <a
-            href="mailto:connect@venturizer.in"
-            className="font-sans text-[10px] text-[#444] hover:text-[#F5F5F5] tracking-wide transition-colors"
-          >
+          <a href="mailto:connect@venturizer.in" className="font-sans text-[12px] text-[#94A3B8] hover:text-[#FFFFFF] transition-colors">
             connect@venturizer.in
           </a>
         </div>
       </footer>
 
-      {/* ── Floating Qualify Now button ── */}
+      {/* ── Trigger button (floating bottom-right) ── */}
       {!showChat && (
         <button
           onClick={() => setShowChat(true)}
-          className="fixed bottom-6 right-6 h-[44px] px-6 bg-[#F5F5F5] text-[#0A0A0A] font-sans text-[11px] font-bold tracking-widest hover:bg-white transition-all z-30 rounded-full anim-ring-pulse"
+          className="fixed bottom-6 right-6 w-[160px] h-[44px] bg-[#0F1D35] text-[#FFFFFF] font-sans text-[13px] font-semibold tracking-wider hover:bg-[#1B2B4B] transition-all z-30 rounded-full flex items-center justify-center anim-ring-pulse border-none cursor-pointer"
         >
           Qualify Now ↗
         </button>

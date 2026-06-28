@@ -48,28 +48,33 @@ export default function Login({ onLoginSuccess, onBack }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center font-sans">
-      {/* Back */}
-      <button onClick={onBack} className="absolute top-6 left-8 font-sans text-[10px] text-[#444] hover:text-[#F5F5F5] transition-colors uppercase tracking-wider">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col items-center justify-center font-sans relative select-none">
+      {/* Back Link */}
+      <button 
+        onClick={onBack} 
+        className="absolute top-6 left-8 font-sans text-[12px] font-semibold text-[#94A3B8] hover:text-[#0F1D35] transition-colors bg-transparent border-none cursor-pointer uppercase tracking-wider"
+      >
         ← Back to Site
       </button>
 
-      <div className="w-full max-w-[360px] px-4">
+      {/* Card */}
+      <div className="w-[380px] bg-[#FFFFFF] border border-[#E4E7EC] rounded-lg p-10 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
         {/* Logo */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="font-sans text-[20px] font-black text-[#E8533A]">V</span>
-            <span className="font-sans text-[11px] tracking-[3px] font-bold text-[#F5F5F5] uppercase">VENTURIZER</span>
-          </div>
-          <p className="font-sans text-[10px] text-[#444] tracking-widest uppercase">Internal Operators Console</p>
+        <div className="text-center">
+          <span className="font-sans text-[28px] font-black text-[#D64235] block mb-1">V</span>
+          <span className="font-sans text-[12px] tracking-[3px] font-bold text-[#0F1D35] uppercase block">VENTURIZER ERP</span>
+          <span className="font-sans text-[11px] text-[#94A3B8] block mt-1">Internal Admin Console</span>
         </div>
 
+        {/* Divider */}
+        <div className="border-b border-[#E4E7EC] my-6" />
+
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="label-bracket block mb-2">Email</label>
+            <label className="block text-[11px] font-bold text-[#64748B] uppercase tracking-wider mb-2">Email</label>
             <input
-              className="vz-input"
+              className="vz-input w-full"
               type="email"
               placeholder="admin@venturizer.co"
               value={email}
@@ -80,9 +85,9 @@ export default function Login({ onLoginSuccess, onBack }) {
           </div>
 
           <div>
-            <label className="label-bracket block mb-2">Password</label>
+            <label className="block text-[11px] font-bold text-[#64748B] uppercase tracking-wider mb-2">Password</label>
             <input
-              className="vz-input"
+              className="vz-input w-full"
               type="password"
               placeholder="••••••••"
               value={password}
@@ -92,31 +97,31 @@ export default function Login({ onLoginSuccess, onBack }) {
           </div>
 
           {error && (
-            <p className="font-sans text-[11px] text-[#E8533A] tracking-wider">✗ {error}</p>
+            <p className="font-sans text-[11px] text-[#D64235] tracking-wider font-semibold">✗ {error}</p>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-[#F5F5F5] text-[#0A0A0A] font-sans text-[11px] font-bold tracking-widest uppercase hover:bg-white transition-colors disabled:opacity-50 rounded-sm"
+            className="w-full h-[42px] bg-[#0F1D35] text-white font-sans text-[12px] font-semibold tracking-widest uppercase hover:bg-[#1B2B4B] transition-colors disabled:opacity-50 rounded-sm cursor-pointer border-none"
           >
-            {loading ? 'Authenticating...' : 'Sign In →'}
+            {loading ? 'Authenticating...' : 'Sign In'}
           </button>
         </form>
 
         {/* Demo access */}
-        <div className="mt-6 text-center">
+        <div className="mt-5 text-center">
           <button
             onClick={handleDemo}
             disabled={loading}
-            className="font-sans text-[10px] text-[#444] hover:text-[#F5F5F5] transition-colors uppercase tracking-wider"
+            className="font-sans text-[12px] text-[#94A3B8] hover:text-[#0F1D35] transition-colors uppercase tracking-wider bg-transparent border-none cursor-pointer"
           >
             Demo Access →
           </button>
         </div>
 
-        <p className="text-center font-sans text-[9px] text-[#222] tracking-widest mt-12 uppercase">
-          Venturizer ERP · Authorized Personnel Only
+        <p className="text-center font-sans text-[11px] text-[#CBD5E1] tracking-widest mt-6 uppercase">
+          Authorized Personnel Only
         </p>
       </div>
     </div>

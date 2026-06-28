@@ -29,12 +29,12 @@ function ProgressBar({ step, total, section }) {
   const pct = Math.round(((step + 1) / total) * 100);
   return (
     <div className="w-full shrink-0">
-      {/* 2px red fill bar */}
-      <div className="h-[2px] bg-[#1E1E1E] w-full">
-        <div className="h-full bg-[#E8533A] transition-all duration-300" style={{ width: `${pct}%` }} />
+      {/* 3px height bar */}
+      <div className="h-[3px] bg-[#F0F2F5] w-full">
+        <div className="h-full bg-[#D64235] transition-all duration-350" style={{ width: `${pct}%` }} />
       </div>
-      <div className="px-5 py-2">
-        <span className="font-sans text-[10px] text-[#444] tracking-widest uppercase">
+      <div className="px-5 py-2 border-b border-[#E4E7EC]">
+        <span className="font-sans text-[10px] text-[#94A3B8] tracking-widest uppercase">
           {section} · Q {step + 1} OF {total}
         </span>
       </div>
@@ -93,13 +93,13 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
   };
 
   const NavFooter = ({ onContinue }) => (
-    <div className="flex justify-between items-center mt-auto pt-6 border-t border-[#1A1A1A]">
-      <button onClick={onBack} className="font-sans text-[12px] text-[#444] hover:text-[#F5F5F5] transition-colors">
+    <div className="flex justify-between items-center mt-auto pt-5 border-t border-[#E4E7EC]">
+      <button onClick={onBack} className="font-sans text-[12px] text-[#94A3B8] hover:text-[#0F1D35] transition-colors bg-transparent border-none cursor-pointer">
         ← Back
       </button>
       <button 
         onClick={onContinue || commitText} 
-        className="font-sans text-[12px] text-[#F5F5F5] font-medium hover:text-white transition-colors"
+        className="font-sans text-[12px] text-[#0F1D35] font-semibold hover:text-[#1B2B4B] transition-colors bg-transparent border-none cursor-pointer"
       >
         Continue →
       </button>
@@ -108,22 +108,22 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
 
   /* Render Header helper */
   const renderQHeader = () => (
-    <div className="mb-6">
+    <div className="mb-5">
       <div className="flex justify-between items-center text-[10px] font-medium">
-        <span className="text-[#333]">Q {String(step + 1).padStart(2, '0')}</span>
-        <span className="text-[#444] uppercase tracking-wider">{q.section}</span>
+        <span className="text-[#94A3B8]">Q {String(step + 1).padStart(2, '0')}</span>
+        <span className="text-[#CBD5E1] uppercase tracking-wider font-bold">{q.section}</span>
       </div>
-      <p className="text-[17px] text-[#F5F5F5] font-medium leading-[1.5] mt-[10px]">{q.question}</p>
+      <p className="text-[16px] text-[#0F1D35] font-semibold leading-[1.5] mt-3">{q.question}</p>
     </div>
   );
 
   /* ── select (single choice) ── */
   if (q.type === 'select') {
     return (
-      <div className="flex-1 flex flex-col justify-between px-[20px] py-[24px]">
+      <div className="flex-1 flex flex-col justify-between p-5 bg-[#FFFFFF]">
         <div>
           {renderQHeader()}
-          <div className="grid grid-cols-2 gap-[6px]">
+          <div className="grid grid-cols-2 gap-2">
             {q.options.map((opt) => {
               const lbl = optLabel(opt);
               const v   = optValue(opt);
@@ -132,10 +132,10 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
                 <button
                   key={v}
                   onClick={() => { onAnswer(q.id, v); onNext(); }}
-                  className={`w-full text-left text-[13px] p-[10px_12px] border transition-all rounded-sm ${
+                  className={`w-full text-left text-[13px] p-[10px_14px] border transition-all rounded-sm cursor-pointer ${
                     selected
-                      ? 'border-[#E8533A] text-[#F5F5F5] bg-[#141414]'
-                      : 'border-[#1E1E1E] text-[#666] bg-[#141414] hover:border-[#333] hover:text-[#F5F5F5]'
+                      ? 'border-[#0F1D35] text-[#0F1D35] bg-[#F0F2F5] font-medium'
+                      : 'border-[#E4E7EC] text-[#4A5568] bg-[#FFFFFF] hover:border-[#94A3B8] hover:bg-[#F7F8FA]'
                   }`}
                 >
                   {lbl}
@@ -155,10 +155,10 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
   /* ── multiselect ── */
   if (q.type === 'multiselect') {
     return (
-      <div className="flex-1 flex flex-col justify-between px-[20px] py-[24px]">
+      <div className="flex-1 flex flex-col justify-between p-5 bg-[#FFFFFF]">
         <div>
           {renderQHeader()}
-          <div className="grid grid-cols-2 gap-[6px]">
+          <div className="grid grid-cols-2 gap-2">
             {q.options.map((opt) => {
               const lbl = optLabel(opt);
               const v   = optValue(opt);
@@ -167,19 +167,19 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
                 <button
                   key={v}
                   onClick={() => toggleMulti(v)}
-                  className={`w-full text-left text-[13px] p-[10px_12px] border transition-all rounded-sm relative ${
+                  className={`w-full text-left text-[13px] p-[10px_14px] border transition-all rounded-sm relative cursor-pointer ${
                     selected
-                      ? 'border-[#E8533A] text-[#F5F5F5] bg-[#141414]'
-                      : 'border-[#1E1E1E] text-[#666] bg-[#141414] hover:border-[#333] hover:text-[#F5F5F5]'
+                      ? 'border-[#0F1D35] text-[#0F1D35] bg-[#F0F2F5] font-medium'
+                      : 'border-[#E4E7EC] text-[#4A5568] bg-[#FFFFFF] hover:border-[#94A3B8] hover:bg-[#F7F8FA]'
                   }`}
                 >
                   <span>{lbl}</span>
-                  {selected && <span className="absolute top-1.5 right-2 text-[#E8533A] text-[9px]">✓</span>}
+                  {selected && <span className="absolute top-2 right-2 text-[#D64235] text-[10px] font-bold">✓</span>}
                 </button>
               );
             })}
           </div>
-          {error && <p className="text-[11px] text-[#E8533A] mt-2">{error}</p>}
+          {error && <p className="text-[11px] text-[#D64235] mt-2 font-medium">{error}</p>}
         </div>
         <NavFooter onContinue={commitMulti} />
       </div>
@@ -189,12 +189,12 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
   /* ── currency_amount ── */
   if (q.type === 'currency_amount') {
     return (
-      <div className="flex-1 flex flex-col justify-between px-[20px] py-[24px]">
+      <div className="flex-1 flex flex-col justify-between p-5 bg-[#FFFFFF]">
         <div>
           {renderQHeader()}
-          <div className="flex items-center border-b border-[#2A2A2A] relative">
+          <div className="flex items-center border border-[#E4E7EC] rounded-sm bg-[#FFFFFF] relative px-3">
             <input
-              className="bg-transparent border-none text-[#F5F5F5] text-[14px] py-[10px] w-full focus:outline-none"
+              className="bg-transparent border-none text-[#0F1D35] text-[14px] py-[10px] w-full focus:outline-none"
               type="number"
               placeholder={q.placeholder || '0'}
               value={amount}
@@ -202,19 +202,21 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
               autoFocus
             />
             {/* Currency toggle pill */}
-            <div className="absolute right-0 top-1.5 flex border border-[#222] rounded-sm bg-[#141414] text-[9px] font-mono overflow-hidden">
+            <div className="flex border border-[#E4E7EC] rounded-sm bg-[#FFFFFF] text-[10px] font-semibold overflow-hidden shrink-0">
               {['INR', 'USD'].map(c => (
                 <button
                   key={c}
                   onClick={() => setCurrency(c)}
-                  className={`px-2 py-1 ${currency === c ? 'bg-[#E8533A] text-[#F5F5F5]' : 'text-[#666]'}`}
+                  className={`px-2.5 py-1 cursor-pointer transition-colors border-none ${
+                    currency === c ? 'bg-[#0F1D35] text-white' : 'text-[#94A3B8]'
+                  }`}
                 >
                   {c}
                 </button>
               ))}
             </div>
           </div>
-          {error && <p className="text-[11px] text-[#E8533A] mt-2">{error}</p>}
+          {error && <p className="text-[11px] text-[#D64235] mt-2 font-medium">{error}</p>}
         </div>
         <NavFooter onContinue={commitCurrency} />
       </div>
@@ -225,10 +227,10 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
   if (q.type === 'conditional_customers') {
     const isYes = hasCust === true || String(hasCust).toLowerCase() === 'true';
     return (
-      <div className="flex-1 flex flex-col justify-between px-[20px] py-[24px]">
+      <div className="flex-1 flex flex-col justify-between p-5 bg-[#FFFFFF]">
         <div className="overflow-y-auto max-h-[380px]">
           {renderQHeader()}
-          <div className="grid grid-cols-2 gap-[6px] mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-4">
             {['Yes', 'No'].map(opt => {
               const selected = hasCust !== null && ((opt === 'Yes' && isYes) || (opt === 'No' && !isYes));
               return (
@@ -244,10 +246,10 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
                       setError('');
                     }
                   }}
-                  className={`w-full text-center text-[13px] p-[10px_12px] border transition-all rounded-sm ${
+                  className={`w-full text-center text-[13px] p-[10px_12px] border transition-all rounded-sm cursor-pointer ${
                     selected
-                      ? 'border-[#E8533A] text-[#F5F5F5] bg-[#141414]'
-                      : 'border-[#1E1E1E] text-[#666] bg-[#141414] hover:border-[#333]'
+                      ? 'border-[#0F1D35] text-[#0F1D35] bg-[#F0F2F5] font-medium'
+                      : 'border-[#E4E7EC] text-[#4A5568] bg-[#FFFFFF] hover:border-[#94A3B8] hover:bg-[#F7F8FA]'
                   }`}
                 >
                   {opt}
@@ -258,11 +260,11 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
 
           {/* Conditional slide-in inputs */}
           {hasCust === true && (
-            <div className="space-y-4 border-t border-[#1A1A1A] pt-4 anim-fade-up">
+            <div className="space-y-4 border-t border-[#E4E7EC] pt-4 anim-fade-up">
               <div>
                 <label className="label-bracket block mb-1">How many customers?</label>
                 <input
-                  className="vz-input-line"
+                  className="vz-input"
                   type="number"
                   placeholder="e.g. 20"
                   value={custCount}
@@ -271,20 +273,22 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
               </div>
               <div>
                 <label className="label-bracket block mb-1">Monthly Recurring Revenue (MRR)</label>
-                <div className="flex items-center border-b border-[#2A2A2A] relative">
+                <div className="flex items-center border border-[#E4E7EC] rounded-sm bg-white relative px-3">
                   <input
-                    className="bg-transparent border-none text-[#F5F5F5] text-[14px] py-[10px] w-full focus:outline-none"
+                    className="bg-transparent border-none text-[#0F1D35] text-[14px] py-[10px] w-full focus:outline-none"
                     type="number"
                     placeholder="e.g. 50000"
                     value={mrr}
                     onChange={e => setMrr(e.target.value)}
                   />
-                  <div className="absolute right-0 top-1.5 flex border border-[#222] rounded-sm bg-[#141414] text-[9px] font-mono overflow-hidden">
+                  <div className="flex border border-[#E4E7EC] rounded-sm bg-white text-[10px] font-semibold overflow-hidden shrink-0">
                     {['INR', 'USD'].map(c => (
                       <button
                         key={c}
                         onClick={() => setMrrCur(c)}
-                        className={`px-2 py-1 ${mrrCur === c ? 'bg-[#E8533A] text-[#F5F5F5]' : 'text-[#666]'}`}
+                        className={`px-2.5 py-1 cursor-pointer transition-colors border-none ${
+                          mrrCur === c ? 'bg-[#0F1D35] text-white' : 'text-[#94A3B8]'
+                        }`}
                       >
                         {c}
                       </button>
@@ -294,7 +298,7 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
               </div>
             </div>
           )}
-          {error && <p className="text-[11px] text-[#E8533A] mt-2">{error}</p>}
+          {error && <p className="text-[11px] text-[#D64235] mt-2 font-medium">{error}</p>}
         </div>
         <NavFooter onContinue={() => {
           if (hasCust === null) { setError('✗ Please make a choice.'); return; }
@@ -314,10 +318,10 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
   if (q.type === 'conditional_funding') {
     const isYes = hasFund === true || String(hasFund).toLowerCase() === 'true';
     return (
-      <div className="flex-1 flex flex-col justify-between px-[20px] py-[24px]">
+      <div className="flex-1 flex flex-col justify-between p-5 bg-[#FFFFFF]">
         <div className="overflow-y-auto max-h-[380px]">
           {renderQHeader()}
-          <div className="grid grid-cols-2 gap-[6px] mb-4">
+          <div className="grid grid-cols-2 gap-2 mb-4">
             {['Yes', 'No'].map(opt => {
               const selected = hasFund !== null && ((opt === 'Yes' && isYes) || (opt === 'No' && !isYes));
               return (
@@ -332,10 +336,10 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
                       setError('');
                     }
                   }}
-                  className={`w-full text-center text-[13px] p-[10px_12px] border transition-all rounded-sm ${
+                  className={`w-full text-center text-[13px] p-[10px_12px] border transition-all rounded-sm cursor-pointer ${
                     selected
-                      ? 'border-[#E8533A] text-[#F5F5F5] bg-[#141414]'
-                      : 'border-[#1E1E1E] text-[#666] bg-[#141414] hover:border-[#333]'
+                      ? 'border-[#0F1D35] text-[#0F1D35] bg-[#F0F2F5] font-medium'
+                      : 'border-[#E4E7EC] text-[#4A5568] bg-[#FFFFFF] hover:border-[#94A3B8] hover:bg-[#F7F8FA]'
                   }`}
                 >
                   {opt}
@@ -346,17 +350,17 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
 
           {/* Conditional expand inline */}
           {hasFund === true && (
-            <div className="space-y-2 border-t border-[#1A1A1A] pt-4 anim-fade-up">
+            <div className="space-y-2 border-t border-[#E4E7EC] pt-4 anim-fade-up">
               <label className="label-bracket block mb-1">How much and from whom?</label>
               <textarea
-                className="bg-transparent border-b border-[#2A2A2A] text-[#F5F5F5] text-[14px] py-[10px] w-full focus:outline-none h-[72px] resize-none"
+                className="vz-input h-[72px] resize-none"
                 placeholder="e.g. Raised ₹20L from Angel Investors..."
                 value={fundDet}
                 onChange={e => setFundDet(e.target.value)}
               />
             </div>
           )}
-          {error && <p className="text-[11px] text-[#E8533A] mt-2">{error}</p>}
+          {error && <p className="text-[11px] text-[#D64235] mt-2 font-medium">{error}</p>}
         </div>
         <NavFooter onContinue={() => {
           if (hasFund === null) { setError('✗ Please make a choice.'); return; }
@@ -373,17 +377,17 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
   /* ── textarea ── */
   if (q.type === 'textarea') {
     return (
-      <div className="flex-1 flex flex-col justify-between px-[20px] py-[24px]">
+      <div className="flex-1 flex flex-col justify-between p-5 bg-[#FFFFFF]">
         <div>
           {renderQHeader()}
           <textarea
-            className="bg-transparent border border-b-[#2A2A2A] border-transparent text-[#F5F5F5] text-[14px] py-[10px] w-full focus:outline-none h-[72px] resize-none"
+            className="vz-input h-[72px] resize-none"
             placeholder={q.placeholder || 'Enter details...'}
             value={val}
             onChange={e => setVal(e.target.value)}
             autoFocus
           />
-          {error && <p className="text-[11px] text-[#E8533A] mt-2">{error}</p>}
+          {error && <p className="text-[11px] text-[#D64235] mt-2 font-medium">{error}</p>}
         </div>
         <NavFooter />
       </div>
@@ -392,11 +396,11 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
 
   /* ── default: text / email / tel ── */
   return (
-    <div className="flex-1 flex flex-col justify-between px-[20px] py-[24px]">
+    <div className="flex-1 flex flex-col justify-between p-5 bg-[#FFFFFF]">
       <div>
         {renderQHeader()}
         <input
-          className="vz-input-line"
+          className="vz-input"
           type={q.type === 'tel' ? 'tel' : q.type === 'number' ? 'number' : 'text'}
           placeholder={q.placeholder || 'Type here...'}
           value={val}
@@ -404,7 +408,7 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
           onKeyDown={e => e.key === 'Enter' && commitText()}
           autoFocus
         />
-        {error && <p className="text-[11px] text-[#E8533A] mt-2">{error}</p>}
+        {error && <p className="text-[11px] text-[#D64235] mt-2 font-medium">{error}</p>}
       </div>
       <NavFooter />
     </div>
@@ -414,36 +418,36 @@ function QuestionCard({ q, answers, onAnswer, onNext, onBack, step, total }) {
 /* ─── Welcome Screen ─── */
 function WelcomeScreen({ onSelect }) {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 text-center bg-[#0F0F0F] rounded-md">
+    <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 text-center bg-[#FFFFFF]">
       {/* Red V Logomark */}
-      <span className="font-sans font-black text-[40px] text-[#E8533A] mb-4 select-none leading-none">V</span>
+      <span className="font-sans font-black text-[40px] text-[#D64235] mb-4 select-none leading-none">V</span>
 
-      <h2 className="text-lg font-bold text-[#F5F5F5] mb-2 leading-snug">Where do you fit in the ecosystem?</h2>
-      <p className="font-sans text-[11px] text-[#555] tracking-wide mb-8">
-        5 minutes. Honest answers. We'll handle the rest.
+      <h2 className="text-xl font-semibold text-[#0F1D35] mb-1.5 leading-snug">Where do you fit?</h2>
+      <p className="font-sans text-[13px] text-[#6B7280] mb-8">
+        5 minutes. We'll handle the rest.
       </p>
 
-      <div className="flex flex-col gap-2 w-full max-w-[320px]">
+      <div className="flex flex-col gap-2.5 w-full max-w-[320px]">
         <button
           onClick={() => onSelect('founder')}
-          className="bg-[#141414] border border-[#222] hover:border-[#444] p-[18px_20px] text-left transition-all rounded-sm flex justify-between items-center group"
+          className="bg-[#FFFFFF] border border-[#E4E7EC] hover:border-[#0F1D35] p-[16px_20px] text-left transition-all rounded-md flex justify-between items-center group cursor-pointer"
         >
           <div>
-            <span className="font-sans text-[10px] text-[#E8533A] tracking-wider block font-bold mb-1">FOUNDER</span>
-            <span className="text-[14px] text-[#F5F5F5]">I'm building a venture</span>
+            <span className="font-sans text-[10px] text-[#D64235] tracking-wider block font-bold mb-1 uppercase">FOUNDER</span>
+            <span className="text-[14px] text-[#0F1D35] font-medium">I'm building a venture</span>
           </div>
-          <span className="text-[#444] group-hover:text-white transition-colors text-sm">→</span>
+          <span className="text-[#CBD5E1] group-hover:text-[#0F1D35] transition-colors text-sm font-bold">→</span>
         </button>
 
         <button
           onClick={() => onSelect('investor')}
-          className="bg-[#141414] border border-[#222] hover:border-[#444] p-[18px_20px] text-left transition-all rounded-sm flex justify-between items-center group"
+          className="bg-[#FFFFFF] border border-[#E4E7EC] hover:border-[#0F1D35] p-[16px_20px] text-left transition-all rounded-md flex justify-between items-center group cursor-pointer"
         >
           <div>
-            <span className="font-sans text-[10px] text-[#E8533A] tracking-wider block font-bold mb-1">INVESTOR</span>
-            <span className="text-[14px] text-[#F5F5F5]">I'm deploying capital</span>
+            <span className="font-sans text-[10px] text-[#D64235] tracking-wider block font-bold mb-1 uppercase">INVESTOR</span>
+            <span className="text-[14px] text-[#0F1D35] font-medium">I'm deploying capital</span>
           </div>
-          <span className="text-[#444] group-hover:text-white transition-colors text-sm">→</span>
+          <span className="text-[#CBD5E1] group-hover:text-[#0F1D35] transition-colors text-sm font-bold">→</span>
         </button>
       </div>
     </div>
@@ -453,28 +457,28 @@ function WelcomeScreen({ onSelect }) {
 /* ─── Score Result ─── */
 function ScoreResult({ score, bucket, onRestart }) {
   const badgeColors = {
-    hot:   'text-[#E8533A] border-[#E8533A]',
-    good:  'text-[#888] border-[#888]',
-    maybe: 'text-[#555] border-[#555]',
-    low:   'text-[#333] border-[#333]',
+    hot:   'bg-[#FEF2F0] text-[#D64235] border-[#FECDC7]',
+    good:  'bg-[#F0FDF4] text-[#16803C] border-[#BBF7D0]',
+    maybe: 'bg-[#FFFBEB] text-[#B45309] border-[#FDE68A]',
+    low:   'bg-[#F8FAFC] text-[#64748B] border-[#E2E8F0]',
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 text-center anim-fade-up bg-[#0F0F0F] rounded-md">
+    <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 text-center anim-fade-up bg-[#FFFFFF]">
       <div className="flex items-baseline justify-center mb-4">
-        <span className="text-[60px] font-bold text-[#F5F5F5] leading-none">{score}</span>
-        <span className="text-[18px] text-[#333] font-bold ml-1">/100</span>
+        <span className="text-[56px] font-bold text-[#0F1D35] leading-none">{score}</span>
+        <span className="text-[18px] text-[#CBD5E1] font-bold ml-1">/100</span>
       </div>
 
       <span className={`tag text-[10px] uppercase font-bold tracking-widest ${badgeColors[bucket] || badgeColors.low}`}>
         {BUCKET_LABEL[bucket] || bucket}
       </span>
 
-      <p className="text-[13px] text-[#666] leading-[1.7] max-w-[280px] mt-4 font-sans text-center">
+      <p className="text-[13px] text-[#6B7280] leading-[1.7] max-w-[280px] mt-4 font-sans text-center">
         {RESULT_MSG[bucket] || 'Thank you for your application.'}
       </p>
 
-      <button onClick={onRestart} className="font-sans text-[12px] text-[#444] hover:text-[#F5F5F5] mt-7 transition-colors">
+      <button onClick={onRestart} className="font-sans text-[12px] text-[#94A3B8] hover:text-[#0F1D35] mt-6 transition-colors underline cursor-pointer bg-transparent border-none">
         Start over
       </button>
     </div>
@@ -568,7 +572,7 @@ export default function ChatWidget({ onClose, initialType }) {
     <>
       {/* Backdrop — centers the modal */}
       <div 
-        className="fixed inset-0 bg-[#000000]/85 z-40 flex items-center justify-center"
+        className="fixed inset-0 bg-[#0F1D35]/30 backdrop-blur-[2px] z-40 flex items-center justify-center"
         onClick={onClose}
       />
 
@@ -577,74 +581,74 @@ export default function ChatWidget({ onClose, initialType }) {
         className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
       >
         <div
-          className="w-[440px] h-[580px] max-h-[90vh] bg-[#0F0F0F] border border-[#1E1E1E] flex flex-col rounded-sm shadow-none select-none pointer-events-auto anim-fade-up"
+          className="w-[400px] h-[580px] max-h-[90vh] bg-[#FFFFFF] border border-[#E4E7EC] flex flex-col rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.08)] select-none pointer-events-auto transition-transform duration-280"
           onClick={(e) => e.stopPropagation()}
         >
-        {/* Header (48px) */}
-        <div className="h-[48px] border-b border-[#1A1A1A] px-5 flex items-center justify-between shrink-0">
-          <div className="flex items-center gap-2">
-            <span className="font-sans font-black text-sm text-[#E8533A]">V</span>
-            <span className="font-sans text-[9px] tracking-[1.5px] text-[#555] font-bold uppercase">VENTURIZER</span>
+          {/* Header (52px) */}
+          <div className="h-[52px] border-b border-[#E4E7EC] px-5 flex items-center justify-between shrink-0 bg-[#F7F8FA] rounded-t-lg">
+            <div className="flex items-center gap-2">
+              <span className="font-sans font-black text-sm text-[#D64235]">V</span>
+              <span className="font-sans text-[11px] tracking-[1.5px] text-[#0F1D35] font-bold uppercase">VENTURIZER</span>
+              <span className="text-[11px] text-[#94A3B8] font-normal">| Lead Qualification</span>
+            </div>
+            <button onClick={onClose} className="text-[#94A3B8] hover:text-[#0F1D35] transition-colors text-sm cursor-pointer border-none bg-transparent font-bold">✕</button>
           </div>
-          <span className="font-sans text-[11px] text-[#555] uppercase">Lead Qualification</span>
-          <button onClick={onClose} className="text-[#555] hover:text-white transition-colors text-sm">✕</button>
-        </div>
 
-        {/* Progress Fill Bar */}
-        {phase === 'flow' && currentQ && (
-          <ProgressBar step={step} total={flow.length} section={currentQ.section || 'Details'} />
-        )}
-
-        {/* Content Area */}
-        <div className="flex-1 overflow-hidden flex flex-col bg-[#0F0F0F]">
-          {phase === 'welcome' && <WelcomeScreen onSelect={selectType} />}
-
+          {/* Progress Fill Bar */}
           {phase === 'flow' && currentQ && (
-            <QuestionCard
-              key={`${step}-${currentQ.id}`}
-              q={currentQ}
-              answers={answers}
-              onAnswer={(key, val) => {
-                setAnswers(p => ({ ...p, [key]: val }));
-                if (sessionId) {
-                  fetch(`${API}/answer`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ session_id: sessionId, key, value: val }),
-                  }).catch(e => console.error('Answer save failed', e));
-                }
-              }}
-              onNext={handleNext}
-              onBack={handleBack}
-              step={step}
-              total={flow.length}
-            />
+            <ProgressBar step={step} total={flow.length} section={currentQ.section || 'Details'} />
           )}
 
-          {submitting && (
-            <div className="flex-1 flex items-center justify-center bg-[#0F0F0F]">
-              <div className="text-center px-6">
-                <div className="label-bracket mb-3">PROCESSING APPLICATION</div>
-                <div className="font-mono text-[10px] text-[#444] tracking-widest anim-pulse">
-                  Running qualification engine...
+          {/* Content Area */}
+          <div className="flex-1 overflow-hidden flex flex-col bg-[#FFFFFF] rounded-b-lg">
+            {phase === 'welcome' && <WelcomeScreen onSelect={selectType} />}
+
+            {phase === 'flow' && currentQ && (
+              <QuestionCard
+                key={`${step}-${currentQ.id}`}
+                q={currentQ}
+                answers={answers}
+                onAnswer={(key, val) => {
+                  setAnswers(p => ({ ...p, [key]: val }));
+                  if (sessionId) {
+                    fetch(`${API}/answer`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ session_id: sessionId, key, value: val }),
+                    }).catch(e => console.error('Answer save failed', e));
+                  }
+                }}
+                onNext={handleNext}
+                onBack={handleBack}
+                step={step}
+                total={flow.length}
+              />
+            )}
+
+            {submitting && (
+              <div className="flex-1 flex items-center justify-center bg-[#FFFFFF]">
+                <div className="text-center px-6">
+                  <div className="label-bracket mb-3">PROCESSING APPLICATION</div>
+                  <div className="font-sans text-[12px] text-[#94A3B8] tracking-widest anim-pulse">
+                    Running qualification engine...
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {submitErr && !submitting && (
-            <div className="flex-1 flex items-center justify-center px-6 bg-[#0F0F0F]">
-              <div className="border border-[#1A1A1A] p-5 text-center">
-                <p className="font-mono text-[10px] text-[#E8533A] tracking-wider mb-4">{submitErr}</p>
-                <button onClick={() => { setSubmitErr(''); submitLead(); }} className="vz-btn text-[9px] px-4 py-2">RETRY</button>
+            {submitErr && !submitting && (
+              <div className="flex-1 flex items-center justify-center px-6 bg-[#FFFFFF]">
+                <div className="border border-[#E4E7EC] p-5 text-center rounded-sm">
+                  <p className="font-mono text-[11px] text-[#D64235] tracking-wider mb-4">{submitErr}</p>
+                  <button onClick={() => { setSubmitErr(''); submitLead(); }} className="vz-btn text-[10px] px-4 py-2">RETRY</button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {phase === 'result' && result && !submitting && (
-            <ScoreResult score={result.score} bucket={result.bucket} onRestart={restart} />
-          )}
-        </div>
+            {phase === 'result' && result && !submitting && (
+              <ScoreResult score={result.score} bucket={result.bucket} onRestart={restart} />
+            )}
+          </div>
         </div>
       </div>
     </>
